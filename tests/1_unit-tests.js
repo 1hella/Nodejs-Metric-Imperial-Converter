@@ -71,17 +71,6 @@ suite('Unit Tests', function(){
             assert.isNumber(result);
             assert.deepEqual(result, 1)
         });
-
-        test('convertHandler should correctly default to a numerical input of 1 when no numerical input is provided.', function () {
-            let testInput = "kg";
-            let result = convertHandler.getNum(testInput);
-            assert.isNotNull(result);
-            assert.isNotNaN(result);
-            assert.isDefined(result);
-            assert.isOk(result);
-            assert.isNumber(result);
-            assert.deepEqual(result, 1)
-        });
     });
 
     suite('Units', function() {
@@ -179,4 +168,55 @@ suite('Unit Tests', function(){
             assert.deepEqual(result, 'kilograms');
         });
     });
+
+
+    suite('Conversions', function () {
+        test('convertHandler should correctly convert gal to L', function() {
+            let unit = 'gal';
+            let number = 3;
+            let expectedResult = 11.35623;
+            let result = convertHandler.convert(number, unit);
+            assert.approximately(result, expectedResult, 0.0001);
+        });
+
+        test('convertHandler should correctly convert L to gal', function() {
+            let unit = 'L';
+            let number = 10.5;
+            let expectedResult = 2.77381;
+            let result = convertHandler.convert(number, unit);
+            assert.approximately(result, expectedResult, 0.0001);
+        });
+
+        test('convertHandler should correctly convert mi to km', function() {
+            let unit = 'mi';
+            let number = 2.345;
+            let expectedResult = 3.77390;
+            let result = convertHandler.convert(number, unit);
+            assert.approximately(result, expectedResult, 0.0001);
+        });
+
+        test('convertHandler should correctly convert km to mi', function() {
+            let unit = 'km';
+            let number = 100;
+            let expectedResult = 62.13727;
+            let result = convertHandler.convert(number, unit);
+            assert.approximately(result, expectedResult, 0.0001);
+        });
+
+        test('convertHandler should correctly convert lbs to kg', function() {
+            let unit = 'lbs';
+            let number = 220;
+            let expectedResult = 99.79024;
+            let result = convertHandler.convert(number, unit);
+            assert.approximately(result, expectedResult, 0.0001);
+        });
+
+        test('convertHandler should correctly convert kg to lbs', function() {
+            let unit = 'kg';
+            let number = 100;
+            let expectedResult = 220.46244;
+            let result = convertHandler.convert(number, unit);
+            assert.approximately(result, expectedResult, 0.0001);
+        });
+    })
 });
