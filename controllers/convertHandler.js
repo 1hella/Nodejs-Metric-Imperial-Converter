@@ -1,4 +1,21 @@
 function ConvertHandler() {
+  const UNITS = ['gal', 'L', 'mi', 'km', 'lbs', 'kg'];
+  const RETURN_UNITS = {
+    'gal': 'L',
+    'L': 'gal',
+    'mi': 'km',
+    'km': 'mi',
+    'lbs': 'kg',
+    'kg': 'lbs'
+  };
+  const SPELLED_UNITS = {
+    'gal': 'gallons',
+    'L': 'liters',
+    'mi': 'miles',
+    'km': 'kilometers',
+    'lbs': 'pounds',
+    'kg': 'kilograms'
+  };
   
   this.getNum = function(input) {
     let i = 0;
@@ -26,19 +43,26 @@ function ConvertHandler() {
   
   this.getUnit = function(input) {
     let result;
-    
-    return result;
+    let i = 0;
+    while (!isNaN(Number(input.charAt(i))) || input.charAt(i) === '/' || input.charAt(i) === '.') {
+      i++;
+    }
+    result = input.substring(i);
+    for (let unit of UNITS) {
+      if (unit.toLowerCase() === result.toLowerCase()) {
+        return unit;
+      }
+    }
+    return "invalid unit";
   };
   
   this.getReturnUnit = function(initUnit) {
-    let result;
-    
+    let result = RETURN_UNITS[initUnit]
     return result;
   };
 
   this.spellOutUnit = function(unit) {
-    let result;
-    
+    let result = SPELLED_UNITS[unit];
     return result;
   };
   
