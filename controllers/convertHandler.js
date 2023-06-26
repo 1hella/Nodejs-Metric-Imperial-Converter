@@ -5,12 +5,17 @@ function ConvertHandler() {
     let numerator;
     while (!isNaN(Number(input.charAt(i))) || input.charAt(i) === '.' || input.charAt(i) === '/') {
       if (input.charAt(i) === '/') {
+        if (numerator) {
+          return 'invalid number';
+        }
         numerator = Number(input.substring(0, i));
       }
       i++;
     }
     let result;
-    if (!numerator) {
+    if (i === 0) {
+      result = 1;
+    } else if (!numerator) {
       result = Number(input.substring(0, i));
     } else {
       let denominator = Number(input.substring(input.indexOf('/') + 1, i));
