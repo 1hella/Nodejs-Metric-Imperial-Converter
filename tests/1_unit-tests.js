@@ -6,7 +6,7 @@ let convertHandler = new ConvertHandler();
 
 suite('Unit Tests', function(){
     test('convertHandler should correctly read a whole number input', function () {
-        let testInput = "15L";
+        let testInput = "15ml";
         let result = convertHandler.getNum(testInput);
         assert.isNotNull(result);
         assert.isNotNaN(result);
@@ -17,7 +17,7 @@ suite('Unit Tests', function(){
     });
 
     test('convertHandler should correctly read a decimal number input', function () {
-        let testInput = "15.5L";
+        let testInput = "15.5ml";
         let result = convertHandler.getNum(testInput);
         assert.isNotNull(result);
         assert.isNotNaN(result);
@@ -28,7 +28,7 @@ suite('Unit Tests', function(){
     });
 
     test('convertHandler should correctly read a fractional input', function () {
-        let testInput = "15/5L";
+        let testInput = "15/5ml";
         let result = convertHandler.getNum(testInput);
         assert.isNotNull(result);
         assert.isNotNaN(result);

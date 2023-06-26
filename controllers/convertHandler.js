@@ -1,14 +1,22 @@
 function ConvertHandler() {
   
   this.getNum = function(input) {
-    let i;
-    for (i = 0; i < input.length; i++) {
-      console.log(i)
-      if (typeof Number(input.charAt(i)) !== 'number') {
-        break;
+    let i = 0;
+    let numerator;
+    while (!isNaN(Number(input.charAt(i))) || input.charAt(i) === '.' || input.charAt(i) === '/') {
+      if (input.charAt(i) === '/') {
+        numerator = Number(input.substring(0, i));
       }
+      i++;
     }
-    return Number(input.substr(0, i - 1));
+    let result;
+    if (!numerator) {
+      result = Number(input.substring(0, i));
+    } else {
+      let denominator = Number(input.substring(input.indexOf('/') + 1, i));
+      result = numerator / denominator;
+    }
+    return result;
   };
   
   this.getUnit = function(input) {
