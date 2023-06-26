@@ -1,9 +1,14 @@
 function ConvertHandler() {
   
   this.getNum = function(input) {
-    let result;
-    
-    return result;
+    let i;
+    for (i = 0; i < input.length; i++) {
+      console.log(i)
+      if (typeof Number(input.charAt(i)) !== 'number') {
+        break;
+      }
+    }
+    return Number(input.substr(0, i - 1));
   };
   
   this.getUnit = function(input) {
