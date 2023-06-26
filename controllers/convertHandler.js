@@ -16,8 +16,8 @@ function ConvertHandler() {
     'lbs': 'pounds',
     'kg': 'kilograms'
   };
-  
-  this.getNum = function(input) {
+
+  this.getNum = function (input) {
     let i = 0;
     let numerator;
     while (!isNaN(Number(input.charAt(i))) || input.charAt(i) === '.' || input.charAt(i) === '/') {
@@ -40,8 +40,8 @@ function ConvertHandler() {
     }
     return result;
   };
-  
-  this.getUnit = function(input) {
+
+  this.getUnit = function (input) {
     let result;
     let i = 0;
     while (!isNaN(Number(input.charAt(i))) || input.charAt(i) === '/' || input.charAt(i) === '.') {
@@ -55,25 +55,25 @@ function ConvertHandler() {
     }
     return "invalid unit";
   };
-  
-  this.getReturnUnit = function(initUnit) {
+
+  this.getReturnUnit = function (initUnit) {
     let result = RETURN_UNITS[initUnit]
     return result;
   };
 
-  this.spellOutUnit = function(unit) {
+  this.spellOutUnit = function (unit) {
     let result = SPELLED_UNITS[unit];
     return result;
   };
-  
-  this.convert = function(initNum, initUnit) {
+
+  this.convert = function (initNum, initUnit) {
     const galToL = 3.78541;
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
-    
+
     let result;
-    
-    switch(initUnit) {
+
+    switch (initUnit) {
       case 'gal':
         result = initNum * galToL;
         break;
@@ -92,17 +92,17 @@ function ConvertHandler() {
       case 'km':
         result = initNum / miToKm;
         break;
-    }    
-    
+    }
+
+    return parseFloat(result.toFixed(5));
+  };
+
+  this.getString = function (initNum, initUnit, returnNum, returnUnit) {
+    let result = `${initNum} ${this.spellOutUnit(initUnit)} converts to ${returnNum} ${this.spellOutUnit(returnUnit)}`;
+
     return result;
   };
-  
-  this.getString = function(initNum, initUnit, returnNum, returnUnit) {
-    let result;
-    
-    return result;
-  };
-  
+
 }
 
 module.exports = ConvertHandler;
